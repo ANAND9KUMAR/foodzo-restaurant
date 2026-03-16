@@ -295,6 +295,126 @@ const App = () => {
       image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500",
       veg: true,
       category: "Dosa"
+    },
+    {
+      id: "m7",
+      name: "Lucknowi Awadhi Biryani",
+      restaurant: "Nawab's Kitchen",
+      rating: 4.7,
+      votes: 180,
+      price: "₹320",
+      description: "Delicately spiced and slow-cooked in dum style with soft mutton pieces.",
+      image: "https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?w=500",
+      veg: false,
+      category: "Biryani"
+    },
+    {
+      id: "m8",
+      name: "Kolkata Chicken Biryani",
+      restaurant: "Aminia Special",
+      rating: 4.5,
+      votes: 320,
+      price: "₹280",
+      description: "A beautiful blend of mild spices, slow-cooked chicken, and signature soft potato.",
+      image: "https://images.unsplash.com/photo-1589302168068-964664d93cb0?w=500",
+      veg: false,
+      category: "Biryani"
+    },
+    {
+      id: "m9",
+      name: "Ambur Mutton Biryani",
+      restaurant: "Star Briyani",
+      rating: 4.4,
+      votes: 150,
+      price: "₹350",
+      description: "Tangy mutton biryani made with traditional seeraga samba rice from Tamil Nadu.",
+      image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=500",
+      veg: false,
+      category: "Biryani"
+    },
+    {
+      id: "m10",
+      name: "Thalassery Biryani",
+      restaurant: "Malabar Cafe",
+      rating: 4.6,
+      votes: 95,
+      price: "₹310",
+      description: "Kerala's famous biryani featuring kaima rice, subtle spices, and roasted cashews.",
+      image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=500",
+      veg: false,
+      category: "Biryani"
+    },
+    {
+      id: "m11",
+      name: "Sindhi Biryani",
+      restaurant: "Karachi Darbar",
+      rating: 4.2,
+      votes: 210,
+      price: "₹290",
+      description: "Spicy and tangy biryani with an abundance of tomatoes, green chillies, and potatoes.",
+      image: "https://images.unsplash.com/photo-1645177628172-a94c1f96e6db?w=500",
+      veg: false,
+      category: "Biryani"
+    },
+    {
+      id: "m12",
+      name: "Dindigul Biryani",
+      restaurant: "Thalappakatti",
+      rating: 4.3,
+      votes: 140,
+      price: "₹300",
+      description: "Flavorful and peppery biryani cooked with jeera samba rice and tender meat.",
+      image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500",
+      veg: false,
+      category: "Biryani"
+    },
+    {
+      id: "m13",
+      name: "Veg Dum Biryani",
+      restaurant: "Bikanervala",
+      rating: 4.4,
+      votes: 450,
+      price: "₹220",
+      description: "Loaded with fresh vegetables, authentic spices, and cooked in traditional dum.",
+      image: "https://images.unsplash.com/photo-1505253716362-af13ceccdefc?w=500",
+      veg: true,
+      category: "Biryani"
+    },
+    {
+      id: "m14",
+      name: "Paneer Tikka Biryani",
+      restaurant: "Arudha Restaurant",
+      rating: 4.7,
+      votes: 310,
+      price: "₹260",
+      description: "A glorious fusion of char-grilled paneer tikka nested in aromatic biryani rice.",
+      image: "https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?w=500",
+      veg: true,
+      category: "Biryani"
+    },
+    {
+      id: "m15",
+      name: "Egg Biryani",
+      restaurant: "Eggcellent",
+      rating: 4.1,
+      votes: 120,
+      price: "₹210",
+      description: "Fragrant basmati rice cooked with boiled and shallow fried spicy eggs.",
+      image: "https://images.unsplash.com/photo-1610057099443-fde8c4d50f91?w=500",
+      veg: false,
+      category: "Biryani"
+    },
+    {
+      id: "m16",
+      name: "Malabar Prawn Biryani",
+      restaurant: "Ocean Delight",
+      rating: 4.8,
+      votes: 175,
+      price: "₹420",
+      description: "Exotic coastal biryani packed with fresh prawns and flavorful Kerala spices.",
+      image: "https://images.unsplash.com/photo-1552590635-27c2c2128ab4?w=500",
+      veg: false,
+      category: "Biryani"
     }
   ];
 
