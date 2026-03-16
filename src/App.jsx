@@ -415,6 +415,126 @@ const App = () => {
       image: "https://images.unsplash.com/photo-1552590635-27c2c2128ab4?w=500",
       veg: false,
       category: "Biryani"
+    },
+    {
+      id: "m17",
+      name: "Dal Makhani",
+      restaurant: "Punjab Grill",
+      rating: 4.8,
+      votes: 520,
+      price: "₹240",
+      description: "Rich, creamy slow-cooked black lentils flavored with fresh cream, butter, and mild Indian spices.",
+      image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500",
+      veg: true,
+      category: "North Indian"
+    },
+    {
+      id: "m18",
+      name: "Palak Paneer",
+      restaurant: "Bikanervala",
+      rating: 4.5,
+      votes: 310,
+      price: "₹260",
+      description: "Fresh cottage cheese cubes simmered in a smooth, mildly spiced spinach gravy.",
+      image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500",
+      veg: true,
+      category: "North Indian"
+    },
+    {
+      id: "m19",
+      name: "Tandoori Chicken",
+      restaurant: "Arudha Restaurant",
+      rating: 4.7,
+      votes: 680,
+      price: "₹350",
+      description: "Whole chicken marinated in yogurt and traditional spices, roasted to perfection in a clay oven.",
+      image: "https://images.unsplash.com/photo-1599487488020-ebd71217730e?w=500",
+      veg: false,
+      category: "North Indian"
+    },
+    {
+      id: "m20",
+      name: "Paneer Butter Masala",
+      restaurant: "Punjabi Dhaba",
+      rating: 4.6,
+      votes: 430,
+      price: "₹280",
+      description: "Soft paneer cubes cooked in a moderately sweet and spicy tomato cream sauce.",
+      image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500",
+      veg: true,
+      category: "North Indian"
+    },
+    {
+      id: "m21",
+      name: "Mutton Rogan Josh",
+      restaurant: "Nawab's Kitchen",
+      rating: 4.9,
+      votes: 290,
+      price: "₹450",
+      description: "Signature Kashmiri curry with tender lamb chunks cooked in an intensely flavorful red gravy.",
+      image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=500",
+      veg: false,
+      category: "North Indian"
+    },
+    {
+      id: "m22",
+      name: "Malai Kofta",
+      restaurant: "Swaad Classic",
+      rating: 4.4,
+      votes: 180,
+      price: "₹290",
+      description: "Deep-fried potato and paneer dumplings served in a rich, creamy, and mildly sweet cashew gravy.",
+      image: "https://images.unsplash.com/photo-1589302168068-964664d93cb0?w=500",
+      veg: true,
+      category: "North Indian"
+    },
+    {
+      id: "m23",
+      name: "Kadai Chicken",
+      restaurant: "Arudha Restaurant",
+      rating: 4.5,
+      votes: 260,
+      price: "₹340",
+      description: "Spicy and aromatic chicken dish cooked with bell peppers, onions, and freshly ground kadai masala.",
+      image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500",
+      veg: false,
+      category: "North Indian"
+    },
+    {
+      id: "m24",
+      name: "Navratan Korma",
+      restaurant: "Bikanervala",
+      rating: 4.3,
+      votes: 150,
+      price: "₹270",
+      description: "A luxurious medley of mixed vegetables, fruits, and nuts in a rich white gravy.",
+      image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500",
+      veg: true,
+      category: "North Indian"
+    },
+    {
+      id: "m25",
+      name: "Chicken Tikka Masala",
+      restaurant: "Tikka Town",
+      rating: 4.8,
+      votes: 550,
+      price: "₹360",
+      description: "Roasted chunks of chicken bathed in a thick, spiced, and creamy tomato-based sauce.",
+      image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500",
+      veg: false,
+      category: "North Indian"
+    },
+    {
+      id: "m26",
+      name: "Aloo Gobi Adraki",
+      restaurant: "Dhaba Estd 1986",
+      rating: 4.2,
+      votes: 120,
+      price: "₹190",
+      description: "Classic homestyle cauliflower and potato stir-fry generously flavored with julienned ginger.",
+      image: "https://images.unsplash.com/photo-1505253716362-af13ceccdefc?w=500",
+      veg: true,
+      category: "North Indian"
     }
   ];
 
