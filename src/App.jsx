@@ -162,7 +162,17 @@ const App = () => {
     { name: "Thali", img: "/royal_indian_thali.png" },
     { name: "Dosa", img: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500" },
     { name: "Rolls", img: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500" },
-    { name: "Desserts", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500" }
+    { name: "Desserts", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500" },
+    { name: "Pizza", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500" },
+    { name: "Burger", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500" },
+    { name: "Chinese", img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500" },
+    { name: "Momos", img: "https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?w=500" },
+    { name: "Ice Cream", img: "https://images.unsplash.com/photo-1563805042-7684c8e9e1cb?w=500" },
+    { name: "Healthy", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500" },
+    { name: "Sandwich", img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500" },
+    { name: "Paratha", img: "https://images.unsplash.com/photo-1626082927389-6cd34d28d052?w=500" },
+    { name: "Beverages", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500" },
+    { name: "Chaats", img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500" }
   ];
 
   const topBrands = [
