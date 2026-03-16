@@ -472,7 +472,7 @@ const App = () => {
       votes: 290,
       price: "₹450",
       description: "Signature Kashmiri curry with tender lamb chunks cooked in an intensely flavorful red gravy.",
-      image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=500",
+      image: "/mutton_rogan_josh.png",
       veg: false,
       category: "North Indian"
     },
@@ -484,7 +484,7 @@ const App = () => {
       votes: 180,
       price: "₹290",
       description: "Deep-fried potato and paneer dumplings served in a rich, creamy, and mildly sweet cashew gravy.",
-      image: "https://images.unsplash.com/photo-1589302168068-964664d93cb0?w=500",
+      image: "/malai_kofta.png",
       veg: true,
       category: "North Indian"
     },
