@@ -412,7 +412,7 @@ const App = () => {
       votes: 175,
       price: "₹420",
       description: "Exotic coastal biryani packed with fresh prawns and flavorful Kerala spices.",
-      image: "https://images.unsplash.com/photo-1552590635-27c2c2128ab4?w=500",
+      image: "/malabar_prawn_biryani.png",
       veg: false,
       category: "Biryani"
     },
