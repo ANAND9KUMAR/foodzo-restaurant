@@ -186,7 +186,7 @@ const App = () => {
       cuisines: "Desserts, Ice Cream",
       location: "Sainik Road",
       distance: "1.2 km",
-      image: "https://images.unsplash.com/photo-1563805042-7684c8e9e1cb?w=500",
+      image: "/kwality_walls.png",
       offer: "₹125 OFF above ₹249"
     },
     {
