@@ -244,7 +244,7 @@ const App = () => {
       votes: 89,
       price: "₹349",
       description: "Tender pieces of chicken cooked in a rich, creamy tomato-based gravy.",
-      image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500",
+      image: "/butter_chicken.png",
       veg: false,
       category: "North Indian"
     },
@@ -256,7 +256,7 @@ const App = () => {
       votes: 210,
       price: "₹249",
       description: "Classic starter made from chunks of paneer marinated in spices and grilled.",
-      image: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=500",
+      image: "/paneer_tikka_special.png",
       veg: true,
       category: "North Indian"
     },
@@ -424,7 +424,7 @@ const App = () => {
       votes: 520,
       price: "₹240",
       description: "Rich, creamy slow-cooked black lentils flavored with fresh cream, butter, and mild Indian spices.",
-      image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=500",
+      image: "/dal_makhani.png",
       veg: true,
       category: "North Indian"
     },
@@ -436,7 +436,7 @@ const App = () => {
       votes: 310,
       price: "₹260",
       description: "Fresh cottage cheese cubes simmered in a smooth, mildly spiced spinach gravy.",
-      image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500",
+      image: "/palak_paneer.png",
       veg: true,
       category: "North Indian"
     },
@@ -448,7 +448,7 @@ const App = () => {
       votes: 680,
       price: "₹350",
       description: "Whole chicken marinated in yogurt and traditional spices, roasted to perfection in a clay oven.",
-      image: "https://images.unsplash.com/photo-1599487488020-ebd71217730e?w=500",
+      image: "/tandoori_chicken.png",
       veg: false,
       category: "North Indian"
     },
@@ -460,7 +460,7 @@ const App = () => {
       votes: 430,
       price: "₹280",
       description: "Soft paneer cubes cooked in a moderately sweet and spicy tomato cream sauce.",
-      image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500",
+      image: "/paneer_butter_masala.png",
       veg: true,
       category: "North Indian"
     },
@@ -496,7 +496,7 @@ const App = () => {
       votes: 260,
       price: "₹340",
       description: "Spicy and aromatic chicken dish cooked with bell peppers, onions, and freshly ground kadai masala.",
-      image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=500",
+      image: "/kadai_chicken.png",
       veg: false,
       category: "North Indian"
     },
@@ -508,7 +508,7 @@ const App = () => {
       votes: 150,
       price: "₹270",
       description: "A luxurious medley of mixed vegetables, fruits, and nuts in a rich white gravy.",
-      image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500",
+      image: "/navratan_korma.png",
       veg: true,
       category: "North Indian"
     },
@@ -520,7 +520,7 @@ const App = () => {
       votes: 550,
       price: "₹360",
       description: "Roasted chunks of chicken bathed in a thick, spiced, and creamy tomato-based sauce.",
-      image: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500",
+      image: "/chicken_tikka_masala.png",
       veg: false,
       category: "North Indian"
     },
@@ -532,7 +532,7 @@ const App = () => {
       votes: 120,
       price: "₹190",
       description: "Classic homestyle cauliflower and potato stir-fry generously flavored with julienned ginger.",
-      image: "https://images.unsplash.com/photo-1505253716362-af13ceccdefc?w=500",
+      image: "/aloo_gobi.png",
       veg: true,
       category: "North Indian"
     }
