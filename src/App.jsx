@@ -96,15 +96,15 @@ const App = () => {
   };
 
   const updateQuantity = (itemId, amount) => {
-    setCart((prevCart) =>
-      prevCart.map((item) => {
+    setCart((prevCart) => {
+      const updatedCart = prevCart.map((item) => {
         if (item.id === itemId) {
-          const newQty = Math.max(1, item.quantity + amount);
-          return { ...item, quantity: newQty };
+          return { ...item, quantity: item.quantity + amount };
         }
         return item;
-      })
-    );
+      });
+      return updatedCart.filter(item => item.quantity > 0);
+    });
   };
 
   const calculateTotal = () => {
