@@ -535,6 +535,126 @@ const App = () => {
       image: "/aloo_gobi.png",
       veg: true,
       category: "North Indian"
+    },
+    {
+      id: "m27",
+      name: "Maharashtrian Thali",
+      restaurant: "Peshwai Thali",
+      rating: 4.8,
+      votes: 340,
+      price: "₹350",
+      description: "Complete meal featuring puran poli, usal, batata bhaji, varan bhaat, koshimbir, sweet shrikhand.",
+      image: "/maharashtrian_thali.png",
+      veg: true,
+      category: "Thali"
+    },
+    {
+      id: "m28",
+      name: "Gujarati Thali",
+      restaurant: "Rajdhani Thali",
+      rating: 4.7,
+      votes: 560,
+      price: "₹320",
+      description: "Authentic complete meal with dhokla, thepla, sweet kadhi, shrikhand, subtle dal, various shaak.",
+      image: "/gujarati_thali.png",
+      veg: true,
+      category: "Thali"
+    },
+    {
+      id: "m29",
+      name: "Rajasthani Thali",
+      restaurant: "Chokhi Dhani",
+      rating: 4.9,
+      votes: 890,
+      price: "₹450",
+      description: "Royal complete meal with dal baati churma, gatte ki sabzi, ker sangri, bajra roti, garlic chutney.",
+      image: "/rajasthani_thali.png",
+      veg: true,
+      category: "Thali"
+    },
+    {
+      id: "m30",
+      name: "Punjabi Thali",
+      restaurant: "Amritsari Kulcha",
+      rating: 4.6,
+      votes: 420,
+      price: "₹380",
+      description: "Hearty complete meal with dal makhani, paneer tikka, sarson ka saag, makki ki roti, lassi.",
+      image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500",
+      veg: true,
+      category: "Thali"
+    },
+    {
+      id: "m31",
+      name: "Bengali Thali",
+      restaurant: "Oh! Calcutta",
+      rating: 4.7,
+      votes: 310,
+      price: "₹410",
+      description: "Complete authentic meal featuring luchi, chholar dal, shukto, macher jhol, mishti doi, roshogolla.",
+      image: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=500",
+      veg: false,
+      category: "Thali"
+    },
+    {
+      id: "m32",
+      name: "South Indian Thali",
+      restaurant: "Dakshin",
+      rating: 4.8,
+      votes: 750,
+      price: "₹290",
+      description: "Complete authentic meal on a banana leaf with rice, sambar, rasam, poriyal, papadum, payasam.",
+      image: "https://images.unsplash.com/photo-1610192104383-e0d08de411d5?w=500",
+      veg: true,
+      category: "Thali"
+    },
+    {
+      id: "m33",
+      name: "Goan Fish Thali",
+      restaurant: "Mum's Kitchen",
+      rating: 4.5,
+      votes: 280,
+      price: "₹420",
+      description: "Authentic coastal meal with goan fish curry, fried fish, rice, sol kadi, clam sukka.",
+      image: "https://images.unsplash.com/photo-1628204680879-114af1dbe9b1?w=500",
+      veg: false,
+      category: "Thali"
+    },
+    {
+      id: "m34",
+      name: "Kathiawadi Thali",
+      restaurant: "Gopi Dining",
+      rating: 4.4,
+      votes: 190,
+      price: "₹310",
+      description: "Spicy and rustic western indian meal featuring sev tameta nu shaak, ringan no oro, bajri no rotlo.",
+      image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500",
+      veg: true,
+      category: "Thali"
+    },
+    {
+      id: "m35",
+      name: "Kashmiri Wazwan Thali",
+      restaurant: "Wazwan Cafe",
+      rating: 4.8,
+      votes: 150,
+      price: "₹550",
+      description: "Rich meal featuring rogan josh, yakhni, dum aloo, nadru yakhni, modur pulao, flatbread.",
+      image: "https://images.unsplash.com/photo-1544148103-0773bf10d330?w=500",
+      veg: false,
+      category: "Thali"
+    },
+    {
+      id: "m36",
+      name: "Pure Jain Thali",
+      restaurant: "Rajdhani Thali",
+      rating: 4.6,
+      votes: 260,
+      price: "₹300",
+      description: "Vegetarian meal with no onion or garlic, featuring dal, green sabzi, paneer prep, phulka, rice, sweet.",
+      image: "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500",
+      veg: true,
+      category: "Thali"
     }
   ];
 
