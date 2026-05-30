@@ -637,7 +637,7 @@ const App = () => {
       votes: 750,
       price: "₹290",
       description: "Complete authentic meal on a banana leaf with rice, sambar, rasam, poriyal, papadum, payasam.",
-      image: "https://images.unsplash.com/photo-1610192104383-e0d08de411d5?w=500",
+      image: "https://images.unsplash.com/photo-1626132647523-66f5bf380027?w=500",
       veg: true,
       category: "Thali"
     },
