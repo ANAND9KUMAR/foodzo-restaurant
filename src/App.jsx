@@ -649,7 +649,7 @@ const App = () => {
       votes: 280,
       price: "₹420",
       description: "Authentic coastal meal with goan fish curry, fried fish, rice, sol kadi, clam sukka.",
-      image: "https://images.unsplash.com/photo-1628204680879-114af1dbe9b1?w=500",
+      image: "https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=500",
       veg: false,
       category: "Thali"
     },
