@@ -14,24 +14,31 @@ import {
   ArrowRight
 } from "lucide-react";
 import "./index.css";
+import TrackingMap from "./TrackingMap";
+import RiderApp from "./RiderApp";
 
 const App = () => {
   const [activeTab, setActiveTab] = useState("delivery"); // delivery, dining
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cart, setCart] = useState([]);
-  
+
+  // App views
+  const [viewMode, setViewMode] = useState("home"); // home, tracking, rider
+  const [trackOrderId, setTrackOrderId] = useState("");
+
   // Interaction States
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeChip, setActiveChip] = useState("Filter");
   const [activeBottomNav, setActiveBottomNav] = useState("Foodzo");
-  
+
   // Checkout/Order State
   const [orderData, setOrderData] = useState({
     customerName: "",
     address: "",
     phone: "",
-    email: ""
+    email: "",
+    paymentMethod: "online"
   });
   const [isOrdering, setIsOrdering] = useState(false);
   const [orderMessage, setOrderMessage] = useState("");
@@ -45,20 +52,20 @@ const App = () => {
     password: "",
     phone: ""
   });
-  
+
   // Search State
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   const searchResults = searchQuery.trim().length > 0
-    ? allMenuItems.filter(item => 
-        item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.restaurant.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchQuery.toLowerCase())
-      )
+    ? allMenuItems.filter(item =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.restaurant.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchQuery.toLowerCase())
+    )
     : [];
-  
+
   const handleAuthSubmit = (e) => {
     e.preventDefault();
     if (authMode === "login") {
@@ -75,6 +82,18 @@ const App = () => {
       setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
+
+    // Check URL for Payment Status
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentStatus = urlParams.get('payment');
+    if (paymentStatus === 'success') {
+      alert('🎉 Payment Successful! Your order has been placed.');
+      window.history.replaceState({}, document.title, "/");
+    } else if (paymentStatus === 'failed') {
+      alert('❌ Payment Failed! Please try again.');
+      window.history.replaceState({}, document.title, "/");
+    }
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -129,20 +148,34 @@ const App = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/orders", {
+      const endpoint = orderData.paymentMethod === "online"
+        ? "http://localhost:5000/api/payment/pay"
+        : "http://localhost:5000/api/orders";
+
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(orderPayload),
       });
 
       const data = await response.json();
-      if (response.ok) {
+
+      if (response.ok && data.paymentUrl) {
+        // PhonePe redirect
+        setOrderMessage("Redirecting to PhonePe...");
+        window.location.href = data.paymentUrl;
+      } else if (response.ok) {
+        // Fallback or Cash on Delivery case
         setOrderMessage("✅ Order placed successfully!");
         setCart([]);
-        setOrderData({ customerName: "", address: "", phone: "", email: "" });
+        setOrderData({ customerName: "", address: "", phone: "", email: "", paymentMethod: "online" });
         setTimeout(() => {
           setOrderMessage("");
           setIsCartOpen(false);
+          if (data && data.order && data.order._id) {
+            setTrackOrderId(data.order._id);
+            setViewMode("tracking");
+          }
         }, 3000);
       } else {
         setOrderMessage("❌ " + (data.message || "Order failed."));
@@ -316,7 +349,7 @@ const App = () => {
       votes: 320,
       price: "₹280",
       description: "A beautiful blend of mild spices, slow-cooked chicken, and signature soft potato.",
-      image: "https://images.unsplash.com/photo-1589302168068-964664d93cb0?w=500",
+      image: "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?w=500",
       veg: false,
       category: "Biryani"
     },
@@ -376,7 +409,7 @@ const App = () => {
       votes: 450,
       price: "₹220",
       description: "Loaded with fresh vegetables, authentic spices, and cooked in traditional dum.",
-      image: "https://images.unsplash.com/photo-1505253716362-af13ceccdefc?w=500",
+      image: "https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?w=500",
       veg: true,
       category: "Biryani"
     },
@@ -971,11 +1004,24 @@ const App = () => {
   ];
 
   // Derive items based on activeCategory
-  const displayedMenuItems = activeCategory === "All" 
-    ? allMenuItems 
+  const displayedMenuItems = activeCategory === "All"
+    ? allMenuItems
     : allMenuItems.filter(item => item.category === activeCategory);
 
   const filterOptions = ["Filter", "Sort By", "Fast Delivery", "New on Foodzo", "Ratings 4.0+", "Pure Veg", "Offers", "Rs. 300-Rs. 600", "Less than Rs. 300"];
+
+  if (viewMode === "rider") {
+    return (
+      <div style={{ background: '#f5f5f5', minHeight: '100vh', padding: '10px' }}>
+        <button onClick={() => setViewMode("home")} style={{ margin: '10px', padding: '10px', background: 'white', border: '1px solid #ccc', borderRadius: '5px', cursor: 'pointer' }}>← Back to Site</button>
+        <RiderApp />
+      </div>
+    );
+  }
+
+  if (viewMode === "tracking" && trackOrderId) {
+    return <TrackingMap orderId={trackOrderId} onBack={() => setViewMode("home")} />;
+  }
 
   return (
     <div className="app-wrapper">
@@ -1003,6 +1049,10 @@ const App = () => {
               <User size={20} />
               <span>Sign In</span>
             </div>
+            <div className="nav-item" onClick={() => setViewMode('rider')}>
+              <MapPin size={20} color="#e23744" />
+              <span style={{ color: '#e23744', fontWeight: 'bold' }}>Rider App</span>
+            </div>
             <div className="nav-item cart-nav-item" onClick={() => setIsCartOpen(true)}>
               <div className="cart-icon-wrapper">
                 <ShoppingCart size={20} />
@@ -1016,7 +1066,7 @@ const App = () => {
 
       {/* Main Content */}
       <main className="sw-main-content">
-        
+
         {/* Categories / What's on your mind? */}
         <section className="sw-section categories-section">
           <div className="section-header">
@@ -1024,8 +1074,8 @@ const App = () => {
           </div>
           <div className="categories-scroll">
             {categories.map((cat, idx) => (
-              <div 
-                className={`cat-card ${activeCategory === cat.name ? 'active' : ''}`} 
+              <div
+                className={`cat-card ${activeCategory === cat.name ? 'active' : ''}`}
                 key={idx}
                 onClick={() => setActiveCategory(cat.name)}
               >
@@ -1075,11 +1125,11 @@ const App = () => {
           <div className="section-header">
             <h2>Restaurants with online food delivery in Raxaul</h2>
           </div>
-          
+
           <div className="filter-chips">
             {filterOptions.map(chip => (
-              <button 
-                key={chip} 
+              <button
+                key={chip}
                 className={`chip ${activeChip === chip ? 'active' : ''}`}
                 onClick={() => setActiveChip(chip)}
               >
@@ -1100,7 +1150,7 @@ const App = () => {
                     <span className={item.veg ? "veg-icon" : "non-veg-icon"}></span>
                   </div>
                   <h3 className="dish-name">{item.name}</h3>
-                  <div className="dish-price">{item.price} <span style={{ fontSize: '12px', fontWeight: 'normal', marginLeft: '6px', color: '#888'}}>({item.restaurant})</span></div>
+                  <div className="dish-price">{item.price} <span style={{ fontSize: '12px', fontWeight: 'normal', marginLeft: '6px', color: '#888' }}>({item.restaurant})</span></div>
                   <div className="dish-rating">
                     <Star size={12} fill="currentColor" color="green" />
                     <span>{item.rating}</span>
@@ -1108,7 +1158,7 @@ const App = () => {
                   </div>
                   <p className="dish-desc">{item.description}</p>
                 </div>
-                
+
                 <div className="dish-image-action">
                   <div className="image-wrapper">
                     <img src={item.image} alt={item.name} />
@@ -1234,8 +1284,33 @@ const App = () => {
                     value={orderData.email}
                     onChange={(e) => setOrderData({ ...orderData, email: e.target.value })}
                   />
+
+                  <div className="payment-method-selector" style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '15px', marginTop: '10px', textAlign: 'left' }}>
+                    <p style={{ margin: 0, fontWeight: 'bold' }}>Payment Method:</p>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="online"
+                        checked={orderData.paymentMethod === 'online'}
+                        onChange={(e) => setOrderData({ ...orderData, paymentMethod: e.target.value })}
+                      />
+                      Online Payment (PhonePe)
+                    </label>
+                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="cod"
+                        checked={orderData.paymentMethod === 'cod'}
+                        onChange={(e) => setOrderData({ ...orderData, paymentMethod: e.target.value })}
+                      />
+                      Cash on Delivery
+                    </label>
+                  </div>
+
                   <button type="submit" className="checkout-btn" disabled={isOrdering}>
-                    {isOrdering ? "Placing Order..." : `PAY ₹${calculateTotal() + 65}`}
+                    {isOrdering ? "Placing Order..." : (orderData.paymentMethod === 'cod' ? `PLACE ORDER (₹${calculateTotal() + 65})` : `PAY ₹${calculateTotal() + 65}`)}
                   </button>
                 </form>
                 {orderMessage && (
@@ -1248,7 +1323,7 @@ const App = () => {
           )}
         </div>
       </div>
-      
+
       {/* Auth Sidebar / Drawer */}
       <div className={`sw-cart-overlay ${isAuthOpen ? "open" : ""}`} onClick={() => setIsAuthOpen(false)}></div>
       <div className={`sw-auth-drawer ${isAuthOpen ? "open" : ""}`}>
@@ -1280,26 +1355,26 @@ const App = () => {
                   placeholder="Full Name"
                   required
                   value={authData.name}
-                  onChange={(e) => setAuthData({...authData, name: e.target.value})}
+                  onChange={(e) => setAuthData({ ...authData, name: e.target.value })}
                   style={{ borderRadius: '0', borderBottom: 'none' }}
                 />
               )}
               {authMode === "signup" && (
-                 <input
-                   type="tel"
-                   placeholder="Phone Number"
-                   required
-                   value={authData.phone}
-                   onChange={(e) => setAuthData({...authData, phone: e.target.value})}
-                   style={{ borderRadius: '0', borderBottom: 'none' }}
-                 />
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  required
+                  value={authData.phone}
+                  onChange={(e) => setAuthData({ ...authData, phone: e.target.value })}
+                  style={{ borderRadius: '0', borderBottom: 'none' }}
+                />
               )}
               <input
                 type="email"
                 placeholder={authMode === "login" ? "Email Address or Phone Number" : "Email Address"}
                 required
                 value={authData.email}
-                onChange={(e) => setAuthData({...authData, email: e.target.value})}
+                onChange={(e) => setAuthData({ ...authData, email: e.target.value })}
                 style={{ borderRadius: '0', borderBottom: 'none' }}
               />
               <input
@@ -1307,7 +1382,7 @@ const App = () => {
                 placeholder="Password"
                 required
                 value={authData.password}
-                onChange={(e) => setAuthData({...authData, password: e.target.value})}
+                onChange={(e) => setAuthData({ ...authData, password: e.target.value })}
                 style={{ borderRadius: '0' }}
               />
               <button type="submit" className="checkout-btn" style={{ background: 'var(--color-primary)', marginTop: '20px', borderRadius: '0' }}>
@@ -1320,7 +1395,7 @@ const App = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Search Fullscreen Overlay */}
       <div className={`sw-search-overlay ${isSearchOpen ? "open" : ""}`}>
         <div className="search-overlay-container">
@@ -1329,26 +1404,26 @@ const App = () => {
               <ArrowRight size={24} style={{ transform: "rotate(180deg)" }} />
             </div>
             <div className="search-input-wrapper">
-              <input 
-                type="text" 
-                placeholder="Search for restaurants and food" 
+              <input
+                type="text"
+                placeholder="Search for restaurants and food"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               {searchQuery && <X size={18} className="clear-search" onClick={() => setSearchQuery("")} />}
             </div>
           </div>
-          
+
           <div className="search-content">
             {searchQuery.trim().length === 0 ? (
-               <div className="recent-searches">
-                 <h3>Popular Cuisines</h3>
-                 <div className="popular-cuisines-pills">
-                   {["Biryani", "Pizzas", "North Indian", "Thali", "Sweets", "Rolls"].map(c => (
-                     <div key={c} className="cuisine-pill" onClick={() => setSearchQuery(c)}>{c}</div>
-                   ))}
-                 </div>
-               </div>
+              <div className="recent-searches">
+                <h3>Popular Cuisines</h3>
+                <div className="popular-cuisines-pills">
+                  {["Biryani", "Pizzas", "North Indian", "Thali", "Sweets", "Rolls"].map(c => (
+                    <div key={c} className="cuisine-pill" onClick={() => setSearchQuery(c)}>{c}</div>
+                  ))}
+                </div>
+              </div>
             ) : (
               <div className="search-results">
                 {searchResults.length > 0 ? (
@@ -1360,7 +1435,7 @@ const App = () => {
                             <span className={item.veg ? "veg-icon" : "non-veg-icon"}></span>
                           </div>
                           <h3 className="dish-name">{item.name}</h3>
-                          <div className="dish-price">{item.price} <span style={{ fontSize: '12px', fontWeight: 'normal', marginLeft: '6px', color: '#888'}}>({item.restaurant})</span></div>
+                          <div className="dish-price">{item.price} <span style={{ fontSize: '12px', fontWeight: 'normal', marginLeft: '6px', color: '#888' }}>({item.restaurant})</span></div>
                           <div className="dish-rating">
                             <Star size={12} fill="currentColor" color="green" />
                             <span>{item.rating}</span>
@@ -1368,7 +1443,7 @@ const App = () => {
                           </div>
                           <p className="dish-desc">{item.description}</p>
                         </div>
-                        
+
                         <div className="dish-image-action">
                           <div className="image-wrapper">
                             <img src={item.image} alt={item.name} />
@@ -1407,7 +1482,7 @@ const App = () => {
           { name: "Search", icon: "https://cdn-icons-png.flaticon.com/512/1044/1044984.png" },
           { name: "Account", icon: "https://cdn-icons-png.flaticon.com/512/1077/1077114.png" }
         ].map(nav => (
-          <div 
+          <div
             key={nav.name}
             className={`bottom-nav-item ${activeBottomNav === nav.name ? 'active' : ''}`}
             onClick={() => {
@@ -1426,8 +1501,8 @@ const App = () => {
         ))}
         <div className="bottom-nav-item" onClick={() => setIsCartOpen(true)}>
           <div className="cart-icon-wrapper">
-             <img src="https://cdn-icons-png.flaticon.com/512/3514/3514491.png" alt="Cart" width={24} />
-             {cart.length > 0 && <span className="cart-badge-btm">{cart.reduce((acc, c) => acc + c.quantity, 0)}</span>}
+            <img src="https://cdn-icons-png.flaticon.com/512/3514/3514491.png" alt="Cart" width={24} />
+            {cart.length > 0 && <span className="cart-badge-btm">{cart.reduce((acc, c) => acc + c.quantity, 0)}</span>}
           </div>
           <span>Cart</span>
         </div>
